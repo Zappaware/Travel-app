@@ -1,0 +1,95 @@
+body{
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+.wrapper {
+    max-width: 100%;
+    margin: 0 auto;
+    display: grid;
+    gap: 20px;
+    grid-template-columns: repeat(2);
+    grid-template-rows: repeat(auto-fill, minmax(200px, 1fr));
+    grid-template-areas: 
+    "header header"
+    "results results"
+    "footer footer";
+}
+
+.mainheader h2 {
+        grid-area: header;
+        font-size: 100px;
+        font-family: 'Anton', sans-serif;
+        margin: 0%;
+        text-shadow: 2px 2px lightgray;
+    }
+.mainheader .lema p {
+    grid-area: header;
+    font-size: 2rem;
+    padding: 0%;
+    margin: 0%;
+}
+
+.results {
+    grid-area: results;
+    display: grid;
+    grid-template-columns: repeat(2);
+    grid-template-areas: 
+    "image form";
+    background-color: orange;
+    width: 100%;
+    height: 400px;
+    margin: 50px 0px 50px 0px;
+}
+
+#image {
+    background-image: url(../media/plane.jpg);
+    grid-area: image;
+    width: 500px;
+    height: 350px;
+    margin: auto;
+    border-radius: 5px;
+}
+
+#form {
+    grid-area: form;
+}
+
+.weather li{
+    list-style: none;
+}
+
+.card {
+    width: 100%;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    transition: 0.3s;
+    border-radius: 10px; 
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin-right: 100px;
+    padding: 20px;
+    background-color: #ffffff
+}
+
+#footer {
+    grid-area: footer;
+    
+}
+
+.input {
+    background-color: snow;
+    height: 30px;
+    width: 70%;
+    border: transparent;
+    border-radius: 5px;
+    padding: 8px;
+}
+
+button {
+    margin: 40px 0 0 0;
+    width: 30%;
+    height: 50px;
+    border: transparent;
+    border-radius: 5px;
+    padding: 8px;
+}

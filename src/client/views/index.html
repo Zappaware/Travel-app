@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="text/CSS" href="styles/styles.scss">
+    <link rel="text/CSS" href="styles/responsive.scss">
+    <link href="https://fonts.googleapis.com/css2?family=Anton&display=swap" rel="stylesheet"> 
+    <title>Travel Planner</title>
+</head>
+<body>
+
+    <div class="wrapper">
+        <header class="mainheader">
+            <h2>Travel Planner</h2>
+            <div class="lema">
+                <p>Get organized, get ready, get fun!</p>
+            </div>
+        </header>
+        <section class="results">
+            <img id="image"  alt="plane-image">
+            <div id="form">
+                <h2>Where are you planning to travel?</h2>
+                <input id="place" class="input" type="text" placeholder="Traveling to">
+                <h2>When are you departing?</h2>
+                <input id="date" class="input" type="text" placeholder="Departing date: DD-MM-YYYY">
+                <button id="generate" type="submit" name="" value="submit" onclick="return Client.handleSubmit(event)" onsubmit="return handleSubmit(event)">Save Trip</button>
+            </div>
+    
+        </section>
+        <section class="weather card">
+
+        </section>
+        <footer id="footer">
+
+        </footer>
+    </div>
+    <script>
+        // Check that service workers are supported
+        if ('serviceWorker' in navigator) {
+            // Use the window load event to keep the page load performant
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('/service-worker.js');
+            });
+        }
+    </script>
+</body>
+</html>
