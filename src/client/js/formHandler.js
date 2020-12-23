@@ -10,7 +10,6 @@ const pixabayBaseUrl = 'https://pixabay.com/api/?';
 
 function handleSubmit(event) {
     event.preventDefault()
- 
 
 //Starting point to the GeoNames platform
 
@@ -111,7 +110,7 @@ const renderData = async (url) => {
         const allData = await getData.json();
         let allDataKeys = ['Description', 'Temperature', 'Min/Temp','Max/Temp','Snow'];
         const allDataValues = Object.values(allData);
-        const resultsForm = document.querySelector('.weather');
+        const card = document.querySelector('.card');
         const fatherDiv = document.createElement('div');
         fatherDiv.setAttribute('class', 'apiData');
         let divList = document.createElement('ul');
@@ -119,12 +118,17 @@ const renderData = async (url) => {
             for (let i = 0; i < allDataValues.length; i++) { 
                 let childDiv = document.createElement('li');
                 childDiv.setAttribute('class', 'info');
+                if (i === 0 || i === 4){
                 childDiv.innerHTML = `${allDataKeys[i]}: ${allDataValues[i]}`;         
                 divList.appendChild(childDiv);
+                } else {
+                childDiv.innerHTML = `${allDataKeys[i]}: ${allDataValues[i]} °`;         
+                divList.appendChild(childDiv);
+                }
             } 
         fatherDiv.appendChild(divList);
-        resultsForm.appendChild(fatherDiv);
-        return resultsForm
+        card.appendChild(fatherDiv);
+        return card
     } catch (error){
         console.log('error', error);
 

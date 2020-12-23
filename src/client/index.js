@@ -7,6 +7,8 @@ let srcImage = document.getElementById('image');
 
 srcImage.src= img;
 
+document.getElementById('generate').addEventListener('click', handleSubmit);
+
 export {
         handleSubmit
    }

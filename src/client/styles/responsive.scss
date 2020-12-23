@@ -10,12 +10,13 @@
         max-width: 100%;
         margin: 0 auto;
         display: grid;
-        gap: 20px;
+        gap: 40px;
         grid-template-columns: repeat(2, minmax(300px, 1 fr));
         grid-template-rows: repeat(auto-fill, minmax(200px, 1fr));
         grid-template-areas: 
         "header"
         "results"
+        "weather"
         "footer";
     }
     
@@ -63,6 +64,29 @@
         grid-area: form;
     }
     
+    ul li {
+        list-style: none;
+    }
+    
+    .weather{
+        grid-area: weather;
+        display: grid;
+        grid-template-columns: repeat(1);
+        grid-template-areas: "card";
+    }
+    
+    .card {
+        grid-area: card;
+        justify-self: center;
+        width: 300px;
+        height: 150px;
+        box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+        transition: 0.3s;
+        border-radius: 10px; 
+        padding: 20px;
+        background-color: #ffffff
+    }
+
     #footer {
         grid-area: footer;
         
@@ -102,12 +126,13 @@
         max-width: 100%;
         margin: 0 auto;
         display: grid;
-        gap: 20px;
-        grid-template-columns: repeat(1, minmax(300px, 1 fr));
+        gap: 40px;
+        grid-template-columns: repeat(1, minmax(300px, 1fr));
         grid-template-rows: repeat(auto-fill, minmax(200px, 1fr));
         grid-template-areas: 
         "header"
         "results"
+        "weather"
         "footer";
     }
     
@@ -128,12 +153,15 @@
     .results {
         grid-area: results;
         display: grid;
-        grid-template-columns: repeat(auto-fill,minmax(450px, 1fr));
+        gap: 20px;
+        grid-template-columns: repeat(1,minmax(450px, 1fr));
+        grid-template-rows: repeat(2, minmax(200px, 1fr));
         grid-template-areas: 
-        "form";
+        "form"
+        "image";
         background-color: orange;
         max-width: 100%;
-        height: 400px;
+        height: 600px;
         margin: 0;
     }
 
@@ -143,11 +171,39 @@
     }
     
     #image {
-       display: none;
+        background-image: url(../media/plane.jpg);
+        grid-area: image;
+        width: 300px;
+        height: 200px;
+        justify-self: center;
+        border-radius: 5px;
     }
     
     #form {
         grid-area: form;
+    }
+
+    ul li {
+        list-style: none;
+    }
+    
+    .weather{
+        grid-area: weather;
+        display: grid;
+        grid-template-columns: repeat(1);
+        grid-template-areas: "card";
+    }
+    
+    .card {
+        grid-area: card;
+        justify-self: center;
+        width: 300px;
+        height: 150px;
+        box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+        transition: 0.3s;
+        border-radius: 10px; 
+        padding: 20px;
+        background-color: #ffffff
     }
     
     #footer {

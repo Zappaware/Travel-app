@@ -6,13 +6,14 @@ body{
     max-width: 100%;
     margin: 0 auto;
     display: grid;
-    gap: 20px;
-    grid-template-columns: repeat(2);
+    gap: 40px;
+    grid-template-columns: repeat(3);
     grid-template-rows: repeat(auto-fill, minmax(200px, 1fr));
     grid-template-areas: 
-    "header header"
-    "results results"
-    "footer footer";
+    "header header header"
+    "results results results"
+    "weather weather weather"
+    "footer footer footer";
 }
 
 .mainheader h2 {
@@ -54,19 +55,25 @@ body{
     grid-area: form;
 }
 
-.weather li{
+ul li { 
     list-style: none;
 }
 
+.weather{
+    grid-area: weather;
+    display: grid;
+    grid-template-columns: repeat(3);
+    grid-template-areas: ". card .";
+}
+
 .card {
-    width: 100%;
+    grid-area: card;
+    justify-self: center;
+    width: 300px;
+    height: 150px;
     box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
     transition: 0.3s;
     border-radius: 10px; 
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    margin-right: 100px;
     padding: 20px;
     background-color: #ffffff
 }
