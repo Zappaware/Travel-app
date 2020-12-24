@@ -111,10 +111,11 @@ const renderData = async (url) => {
         let allDataKeys = ['Description', 'Temperature', 'Min/Temp','Max/Temp','Snow'];
         const allDataValues = Object.values(allData);
         const card = document.querySelector('.card');
-        const fatherDiv = document.createElement('div');
-        fatherDiv.setAttribute('class', 'apiData');
-        let divList = document.createElement('ul');
-        divList.setAttribute('class', 'dataList');
+        let divList = document.getElementById('dataList');
+            while (divList.hasChildNodes()) {
+                divList.removeChild(divList.childNodes[0]);
+            }
+        if (divList.hasChildNodes() ===false){
             for (let i = 0; i < allDataValues.length; i++) { 
                 let childDiv = document.createElement('li');
                 childDiv.setAttribute('class', 'info');
@@ -125,9 +126,9 @@ const renderData = async (url) => {
                 childDiv.innerHTML = `${allDataKeys[i]}: ${allDataValues[i]} °`;         
                 divList.appendChild(childDiv);
                 }
-            } 
-        fatherDiv.appendChild(divList);
-        card.appendChild(fatherDiv);
+            }
+        }
+        card.appendChild(divList);
         return card
     } catch (error){
         console.log('error', error);
