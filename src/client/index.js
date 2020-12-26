@@ -9,6 +9,4 @@ srcImage.src= img;
 
 document.getElementById('generate').addEventListener('click', handleSubmit);
 
-export {
-        handleSubmit
-   }
+export { handleSubmit }

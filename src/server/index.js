@@ -1,5 +1,5 @@
 //Starting point for all the dependencies
-projectData = {};
+let projectData = {};
 var path = require('path');
 const express = require('express');
 const bodyParser = require('body-parser');
