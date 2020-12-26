@@ -48,7 +48,7 @@ const weatherBitRequest = async (baseUrl, key, latitude, longitud, city) => {
     try {
         const apiResponse = await response.json();
         console.log(apiResponse);
-        let date = document.getElementById('date').value;
+        let date = document.getElementById('departDate').value;
         let dateFormat = convertDateFormat(date);
         let dataInfo = [];
         for (let i=0; i < apiResponse.data.length; i++) { 
