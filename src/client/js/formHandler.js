@@ -1,3 +1,4 @@
+//All global variables goes here.
 const geoNamesApiUser = process.env.API_USER;
 const weatherbitApiKey = process.env.API_WEATHERBIT_KEY;
 const pixaBayApiKey = process.env.API_PIXABAY_KEY;
@@ -15,39 +16,39 @@ function handleSubmit(event) {
 
  console.log("::: GeoNames Form Submitted :::");
 
- //function to invert date to the format for weatherbit
+ //function to invert date to the format for weatherbit API.
  const convertDateFormat = (string) => {
     let info = string.split('-').reverse().join('-');
     return info;
 }
 
 
-//Async function to hit the GET request in the Geo Names API
+//Async function to hit the GET request in the GeoNames API.
 const geoNamesRequest = async (baseUrl, query, userInput, apiUser) => {
     const response = await fetch(baseUrl + query + 'placename=' + userInput + '&username=' + apiUser);
-
+//we make a request and this function takes the values returned object.
     try {
         const apiResponse = await response.json();
         const latitude = apiResponse.postalCodes[0].lat;
         const longitud = apiResponse.postalCodes[0].lng;
         const placeName = apiResponse.postalCodes[0].placeName;
         //console.log(apiResponse);
-        console.log(latitude);
-        console.log(longitud);
-        console.log(placeName);
+        //console.log(latitude);
+        //console.log(longitud);
+        //console.log(placeName);
         return [latitude, longitud, placeName]
     } catch (error) {
         console.log('error', error);
     }
 };
 
-//Async function to hit the GET request in the WeatherBit API
+//Async function to hit the GET request in the WeatherBit API.
 const weatherBitRequest = async (baseUrl, key, latitude, longitud, city) => {
     const response = await fetch(baseUrl + '&key=' + key + '&lat=' + latitude + '&lon=' + longitud + '&city='+ city);
-
+//Right here we take more values for the travel app to post it in the server, within an array.
     try {
         const apiResponse = await response.json();
-        console.log(apiResponse);
+        //console.log(apiResponse);
         let date = document.getElementById('departDate').value;
         let dateFormat = convertDateFormat(date);
         let dataInfo = [];
@@ -61,20 +62,20 @@ const weatherBitRequest = async (baseUrl, key, latitude, longitud, city) => {
                 dataInfo.push(weatherData, tempData, minTempData, maxTempData, snowData);
             }
         }
-        console.log(dataInfo);
+        //console.log(dataInfo);
         return dataInfo
     } catch (error) {
         console.log('error', error);
     }
 };
 
-//Async function to hit the GET request in the Pixabay API
+//Async function to hit the GET request in the Pixabay API.
 const pixaBayRequest = async (baseUrl, key, location) => {
     const response = await fetch(baseUrl + 'key=' + key + '&q=' + location + '&image_type=photo&orientation=horizontal' );
 
     try {
         const apiResponse = await response.json();
-        console.log(apiResponse);
+        //console.log(apiResponse);
         let image = document.getElementById('image').src = apiResponse.hits[0].largeImageURL;
         return apiResponse
     } catch (error) {
@@ -82,7 +83,7 @@ const pixaBayRequest = async (baseUrl, key, location) => {
     }
 };
 
-//Async function to POST data in the express server
+//Async function to POST data in the Express server.
 
 const postData = async (url='', data = {})=> {
     const response = await fetch(url, {
@@ -105,7 +106,8 @@ const postData = async (url='', data = {})=> {
 //Async function to render data on the app
 const renderData = async (url) => {
     const getData = await fetch(url);
-
+/*we make the request in the upper variable and then we try this differents steps to create an array for the rendered data, 
+then we use the Object.values property to store the values and finally we use some conditional statements with the DOM for rendering the data*/ 
     try {
         const allData = await getData.json();
         let allDataKeys = ['Description', 'Temperature', 'Min/Temp','Max/Temp','Snow'];
@@ -136,9 +138,11 @@ const renderData = async (url) => {
     }
 }
 
-
-    let location = document.getElementById('place').value;    
+//Right herre we create the location variable for the firs function requested.
+let location = document.getElementById('place').value;    
+   
     
+    //Starting point to the chaining promises of this module.
     geoNamesRequest(geoNamesbaseUrl, userQuery, location, geoNamesApiUser)
     .then(([latitude, longitud,city])=>{
         weatherBitRequest(weatherbitBaseUrl, weatherbitApiKey, latitude, longitud, city)
