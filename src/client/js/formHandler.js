@@ -9,12 +9,10 @@ const weatherbitBaseUrl = 'https://api.weatherbit.io/v2.0/forecast/daily?';
 const pixabayBaseUrl = 'https://pixabay.com/api/?';
 
 
-function handleSubmit(event) {
+const handleSubmit = (event) => {
     event.preventDefault()
 
-//Starting point to the GeoNames platform
 
- console.log("::: GeoNames Form Submitted :::");
 
  //function to invert date to the format for weatherbit API.
  const convertDateFormat = (string) => {
@@ -22,6 +20,7 @@ function handleSubmit(event) {
     return info;
 }
 
+//Starting point to the GeoNames platform
 
 //Async function to hit the GET request in the GeoNames API.
 const geoNamesRequest = async (baseUrl, query, userInput, apiUser) => {
@@ -32,12 +31,9 @@ const geoNamesRequest = async (baseUrl, query, userInput, apiUser) => {
         const latitude = apiResponse.postalCodes[0].lat;
         const longitud = apiResponse.postalCodes[0].lng;
         const placeName = apiResponse.postalCodes[0].placeName;
-        //console.log(apiResponse);
-        //console.log(latitude);
-        //console.log(longitud);
-        //console.log(placeName);
         return [latitude, longitud, placeName]
     } catch (error) {
+        alert('Place and forecast not found. Please check name and date of your travel')
         console.log('error', error);
     }
 };
@@ -48,7 +44,6 @@ const weatherBitRequest = async (baseUrl, key, latitude, longitud, city) => {
 //Right here we take more values for the travel app to post it in the server, within an array.
     try {
         const apiResponse = await response.json();
-        //console.log(apiResponse);
         let date = document.getElementById('departDate').value;
         let dateFormat = convertDateFormat(date);
         let dataInfo = [];
@@ -62,9 +57,9 @@ const weatherBitRequest = async (baseUrl, key, latitude, longitud, city) => {
                 dataInfo.push(weatherData, tempData, minTempData, maxTempData, snowData);
             }
         }
-        //console.log(dataInfo);
         return dataInfo
     } catch (error) {
+        alert('Place and forecast not found. Please check name and date of your travel')
         console.log('error', error);
     }
 };
@@ -75,10 +70,10 @@ const pixaBayRequest = async (baseUrl, key, location) => {
 
     try {
         const apiResponse = await response.json();
-        //console.log(apiResponse);
         let image = document.getElementById('image').src = apiResponse.hits[0].largeImageURL;
         return apiResponse
     } catch (error) {
+        alert('Place and forecast not found. Please check name and date of your travel')
         console.log('error', error);
     }
 };
@@ -99,6 +94,7 @@ const postData = async (url='', data = {})=> {
         const newData = await response.json();
         return newData
     } catch(error) {
+        alert('Place and forecast not found. Please check name and date of your travel')
         console.log('error', error);
     }
 };
@@ -133,6 +129,7 @@ then we use the Object.values property to store the values and finally we use so
         card.appendChild(divList);
         return card
     } catch (error){
+        alert('Place and forecast not found. Please check name and date of your travel')
         console.log('error', error);
 
     }

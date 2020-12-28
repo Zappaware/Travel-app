@@ -12,7 +12,7 @@ In your Git terminal:
 With this web app you can introduce a destination, departing date and leaving day to make diferente API usages to get the forecast weather, a picture and also display the duration of the trip.
 
 ```
-npm run buil-prod 
+npm run build-prod 
 npm run start 
 ```
 

@@ -1,6 +1,6 @@
 //Function to display the duration of the travel in days.
 
-function travelTime () {
+const travelTime =  () => {
     //Formating function for the input date.
     const convertDateFormat = (string) => {
         let info = string.split('-').reverse().join(',');
@@ -24,7 +24,7 @@ function travelTime () {
     let differenceDays= differenceTime / (1000 * 3600 * 24);
 
     // I like to display an alert on the web page.
-    console.log (alert(`The travel is ${Math.round(differenceDays)} days long.`));    
+    alert(`The travel is ${Math.round(differenceDays)} days long.`);    
 }
 
 export {travelTime}
